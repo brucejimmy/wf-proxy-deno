@@ -54,6 +54,32 @@ Deno.serve({ port: 8000 }, async (req) => {
     }
   }
 
+  // oracle.browse.wf 世界状态镜像数据
+  if (url.pathname === "/oracle/worldState.json") {
+    try {
+      const resp = await fetch("https://oracle.browse.wf/worldState.json", {
+        headers: {
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+          "Accept": "application/json",
+          "Accept-Language": "zh-CN,zh;q=0.9",
+        },
+      });
+      const text = await resp.text();
+      return new Response(text, {
+        status: resp.status,
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
+    } catch (err) {
+      return new Response(JSON.stringify({ error: String(err) }), {
+        status: 502,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+  }
+
   return new Response(
     JSON.stringify({
       usage: "可用路径：/warframestat/pc",
