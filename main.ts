@@ -2,7 +2,7 @@ import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
 
 serve(async (req) => {
   const url = new URL(req.url);
-  
+
   if (url.pathname === "/warframestat/pc") {
     const resp = await fetch("https://api.warframestat.us/pc", {
       headers: {
@@ -10,7 +10,7 @@ serve(async (req) => {
         "Accept": "application/json",
       },
     });
-    
+
     return new Response(resp.body, {
       status: resp.status,
       headers: {
