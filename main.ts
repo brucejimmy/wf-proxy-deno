@@ -54,44 +54,6 @@ Deno.serve({ port: 8000 }, async (req) => {
     }
   }
 
-  // oracle.browse.wf 世界状态镜像数据
-  if (url.pathname === "/oracle/worldState.json") {
-    try {
-      const resp = await fetch("https://oracle.browse.wf/worldState.json", {
-        headers: {
-          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
-          "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-          "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
-          "Accept-Encoding": "gzip, deflate, br, zstd",
-          "Cache-Control": "no-cache",
-          "Pragma": "no-cache",
-          "Sec-Ch-Ua": '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
-          "Sec-Ch-Ua-Mobile": "?0",
-          "Sec-Ch-Ua-Platform": '"Windows"',
-          "Sec-Fetch-Dest": "document",
-          "Sec-Fetch-Mode": "navigate",
-          "Sec-Fetch-Site": "none",
-          "Sec-Fetch-User": "?1",
-          "Upgrade-Insecure-Requests": "1",
-          "Referer": "https://oracle.browse.wf/",
-        },
-      });
-      const text = await resp.text();
-      return new Response(text, {
-        status: resp.status,
-        headers: {
-          "Content-Type": "application/json; charset=utf-8",
-          "Access-Control-Allow-Origin": "*",
-        },
-      });
-    } catch (err) {
-      return new Response(JSON.stringify({ error: String(err) }), {
-        status: 502,
-        headers: { "Content-Type": "application/json" },
-      });
-    }
-  }
-
   return new Response(
     JSON.stringify({
       usage: "可用路径：/warframestat/pc",
