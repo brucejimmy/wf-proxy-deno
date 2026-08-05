@@ -56,7 +56,7 @@ Deno.serve({ port: 8000 }, async (req) => {
 
   return new Response(
     JSON.stringify({
-      usage: "可用路径：/warframestat/pc | /wfhub/int/worldState.json",
+      usage: "可用路径：/warframestat/pc",
     }),
     {
       status: 200,
