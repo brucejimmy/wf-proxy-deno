@@ -28,9 +28,9 @@ Deno.serve({ port: 8000 }, async (req) => {
   }
 
   // wfhub.top 国服世界状态数据
-  if (url.pathname === "/wfhub/int/worldState.json") {
+  if (url.pathname === "/wfhub/china/worldState.json") {
     try {
-      const resp = await fetch("https://api.wfhub.top/int/worldState.json", {
+      const resp = await fetch("https://api.wfhub.top/china/worldState.json", {
         headers: {
           "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
           "Accept": "application/json",
